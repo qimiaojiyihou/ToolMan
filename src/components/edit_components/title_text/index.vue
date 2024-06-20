@@ -8,7 +8,7 @@
     </div>
 
     <div>
-      {{ data.config.align.value }}
+      {{ data.config.titleColor.value }}
     </div>
   </div>
 </template>

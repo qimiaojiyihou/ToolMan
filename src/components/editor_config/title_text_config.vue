@@ -29,18 +29,48 @@
     <custom-radio v-model="data.config.titleFontSize.value" :options="fontSizeOptions" class="float-right" @change="onchange(data.id, 'config.titleFontSize.value', data.config.titleFontSize.value)"></custom-radio>
   </div>
 
+  <div class="flex justify-between mb-2">
+    <div>
+      <label for="" class="mr-5">描述大小</label>
+      <span class="text-gray-300">{{ fontSizeMap[data.config.descriptionFontSize.value] }}</span>
+    </div>
+    <custom-radio v-model="data.config.descriptionFontSize.value" :options="fontSizeOptions" class="float-right" @change="onchange(data.id, 'config.descriptionFontSize.value', data.config.descriptionFontSize.value)"></custom-radio>
+  </div>
+
+  <div class="flex justify-between mb-2">
+    <div>
+      <label for="" class="mr-5">标题粗细</label>
+      <span class="text-gray-300">{{ fontWeightMap[data.config.titleFontWeight.value] }}</span>
+    </div>
+    <custom-radio v-model="data.config.titleFontWeight.value" :options="fontWeightOptions" class="float-right" @change="onchange(data.id, 'config.titleFontWeight.value', data.config.titleFontWeight.value)"></custom-radio>
+  </div>
+
+  <div class="flex justify-between mb-2">
+    <div>
+      <label for="" class="mr-5">描述粗细</label>
+      <span class="text-gray-300">{{ fontWeightMap[data.config.descriptionFontWeight.value] }}</span>
+    </div>
+    <custom-radio v-model="data.config.descriptionFontWeight.value" :options="fontWeightOptions" class="float-right" @change="onchange(data.id, 'config.descriptionFontWeight.value', data.config.descriptionFontWeight.value)"></custom-radio>
+  </div>
+
+  <div class="flex justify-between mb-2">
+    <div>
+      <label for="" class="mr-5">标题颜色</label>
+      <span class="text-gray-300">{{ data.config.titleColor.value }}</span>
+    </div>
+
+    <div class="flex">
+      <button class="mr-5 text-[#155bd4]" @click="onchange(data.id, 'config.titleColor.value', titleColor_default)">重置</button>
+      <input type="color" v-model="data.config.titleColor.value" @change="onchange(data.id, 'config.titleColor.value', data.config.titleColor.value)">
+    </div>
+  </div>
+
 </template>
 
 <script setup>
 import CustomRadio from '@/ui/CustomRadio/index.vue'
 import { defineProps, reactive, ref } from 'vue'
 const props = defineProps(['data', 'onchange'])
-
-const alignMap = reactive({
-  'left': '居左对齐',
-  'center': '居中对齐',
-  'right': '居右对齐',
-})
 
 const alignOptions = reactive([
   {
@@ -59,12 +89,10 @@ const alignOptions = reactive([
     title: '居右对齐'
   }
 ])
-
-const fontSizeMap = reactive({
-  '16': '大(16号)',
-  '14': '中(16号)',
-  '12': '小(16号)',
-})
+const alignMap = reactive(alignOptions.reduce((obj, item) => {
+  obj[item.value] = item.title
+  return obj
+}, {}))
 
 const fontSizeOptions = reactive([
   {
@@ -83,5 +111,28 @@ const fontSizeOptions = reactive([
     title: '小(12号)'
   }
 ])
+const fontSizeMap = reactive(fontSizeOptions.reduce((obj, item) => {
+  obj[item.value] = item.title
+  return obj
+}, {}))
 
+const fontWeightOptions = reactive([
+  {
+    icon: 'fontWeightNormal',
+    value: 'normal',
+    title: '常规体'
+  },
+  {
+    icon: 'fontWeightBold',
+    value: 'bold',
+    title: '加粗体'
+  }
+])
+const fontWeightMap = reactive(fontWeightOptions.reduce((obj, item) => {
+  obj[item.value] = item.title
+  return obj
+}, {}))
+
+
+const titleColor_default = ref(props.data.config.titleColor.value)
 </script>

@@ -3,6 +3,7 @@
 @tailwind components;
 
 @tailwind utilities;
+
 *,
 *::before,
 *::after {
@@ -27,12 +28,13 @@ body {
   padding: 0;
 }
 
-::-webkit-scrollbar{
-    width: 2px;
-    height: 2px;
-    background-color: transparent;
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+  background-color: transparent;
 }
-::-webkit-scrollbar-thumb{
-    background-color: darkgray;
-    border-radius: 50px;
+
+::-webkit-scrollbar-thumb {
+  background-color: darkgray;
+  border-radius: 50px;
 }

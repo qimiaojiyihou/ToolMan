@@ -44,10 +44,30 @@ const toolsList = reactive([
           type: String,
           value: '14'
         },
+        titleFontWeight: {
+          required: false,
+          type: String,
+          value: 'bold'
+        },
+        titleColor: {
+          required: false,
+          type: String,
+          value: '#323233'
+        },
         descriptionContent: {
           required: false,
           type: String,
           value: ''
+        },
+        descriptionFontSize: {
+          required: false,
+          type: String,
+          value: '12'
+        },
+        descriptionFontWeight: {
+          required: false,
+          type: String,
+          value: 'normal'
         },
         align: {
           required: true,
