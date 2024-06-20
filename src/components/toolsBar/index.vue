@@ -31,11 +31,33 @@ const toolsList = reactive([
       name: '标题文本',
       componentName: 'TitleText',
       configComponent: 'TitleTextConfig',
-      config: 'TitleTextConfig',
-      value: '标题文本',
+      // config: 'TitleTextConfig',
+      // value: '标题文本',
+      config: {
+        titleContent: {
+          required: false,
+          type: String,
+          value: ''
+        },
+        titleFontSize: {
+          required: false,
+          type: String,
+          value: '14'
+        },
+        descriptionContent: {
+          required: false,
+          type: String,
+          value: ''
+        },
+        align: {
+          required: true,
+          type: String,
+          value: 'left'
+        }
+      },
       styles: {
         width: '100%',
-        height: '50px',
+        minHeight: '50px',
         background: '',
         border: '',
         borderRadius: '',

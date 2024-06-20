@@ -13,7 +13,7 @@
           class="w-full h-full"
         ></iframe>
       </div>
-      <div class="w-[376px] h-full">
+      <div class="w-[376px] h-full p-2">
         <EditorConfig :component_item="current_component" />
       </div>
     </div>

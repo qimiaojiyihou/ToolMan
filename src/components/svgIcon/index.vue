@@ -2,7 +2,8 @@
     <svg 
         class="svg-icon"
         :class="className"
-        aria-hidden="true">
+        aria-hidden="true"
+        :fill="color">
         <use :xlink:href="`#icon-${icon}`"/>
     </svg>
 </template>
@@ -19,6 +20,10 @@ const props = defineProps({
   className: {
     type: String,
     default: ''
+  },
+  color: {
+    type: String,
+    default: '#000'
   }
 })
 </script>

@@ -29,7 +29,7 @@ export default {
 };
 </script>
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import _findIndex from 'lodash/findIndex';
 // import TitleText from '@components/title_text/index.vue';
 // import Image from '@components/image/index.vue';
@@ -45,6 +45,10 @@ const selectComponent = (item) => {
   });
 };
 
+watch(state, val => {
+  console.log(val);
+})
+
 onMounted(() => {
   window.addEventListener('message', (event) => {
     console.log(event);
@@ -54,11 +58,29 @@ onMounted(() => {
       state.components.push(JSON.parse(data));
     }
     if (message === 'updateComponent') {
-      state.components[
+      let comp = state.components[
         _findIndex(state.components, function (o) {
           return o.id == data.id;
         })
-      ][data.key] = data.value;
+      ]
+      let keyArr = data.key.split('.')
+      changeValue(0)
+
+      function changeValue(index) {
+        if (index === keyArr.length - 1) {
+          comp[keyArr[index]] = data.value
+        } else {
+          comp = comp[keyArr[index]]
+          changeValue(index + 1)
+        }
+      }
+
+      // console.log(keyAttr);
+      // state.components[
+      //   _findIndex(state.components, function (o) {
+      //     return o.id == data.id;
+      //   })
+      // ][data.key] = data.value;
     }
   });
 });
