@@ -61,6 +61,11 @@ const toolsList = reactive([
                     type: String,
                     value: "bold",
                 },
+                titleColor: {
+                    required: false,
+                    type: String,
+                    value: "#323233",
+                },
                 descriptionContent: {
                     required: false,
                     type: String,
@@ -76,11 +81,30 @@ const toolsList = reactive([
                     type: String,
                     value: "normal",
                 },
+                descriptionColor: {
+                    required: false,
+                    type: String,
+                    value: "#969799",
+                },
                 align: {
                     required: true,
                     type: String,
                     value: "left",
                 },
+                backgroundColor: {
+                    required: false,
+                    type: String,
+                    value: "#ffffff",
+                },
+                link: {
+                    required: false,
+                    type: Object,
+                    value: {
+                      show: true,
+                      styleTyle: '',
+                      text: '查看更多'
+                    },
+                }
             },
             styles: {
                 width: "100%",
@@ -98,7 +122,7 @@ const toolsList = reactive([
                 opacity: "",
                 overflow: "",
                 display: "",
-                color: "#323233",
+                color: "",
             },
             settings: {
                 is_see_more: false,

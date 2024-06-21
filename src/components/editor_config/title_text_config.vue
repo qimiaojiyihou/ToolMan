@@ -38,7 +38,7 @@
         "
     />
 
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">对齐方式</label>
             <span class="text-gray-300">{{
@@ -55,7 +55,7 @@
         ></custom-radio>
     </div>
 
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">标题大小</label>
             <span class="text-gray-300">{{
@@ -76,7 +76,7 @@
         ></custom-radio>
     </div>
 
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">描述大小</label>
             <span class="text-gray-300">{{
@@ -97,7 +97,7 @@
         ></custom-radio>
     </div>
 
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">标题粗细</label>
             <span class="text-gray-300">{{
@@ -118,7 +118,7 @@
         ></custom-radio>
     </div>
 
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">描述粗细</label>
             <span class="text-gray-300">{{
@@ -139,31 +139,107 @@
         ></custom-radio>
     </div>
 
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">标题颜色</label>
-            <span class="text-gray-300">{{ data.styles.color }}</span>
+            <span class="text-gray-300">{{ data.config.titleColor.value }}</span>
         </div>
 
         <div class="flex">
             <button
                 class="mr-5 text-[#155bd4]"
-                @click="onchange(data.id, 'styles.color', titleColor_default)"
+                @click="onchange(data.id, 'config.titleColor.value', titleColor_default)"
             >
                 重置
             </button>
             <input
                 type="color"
-                v-model="data.styles.color"
-                @change="onchange(data.id, 'styles.color', data.styles.color)"
+                v-model="data.config.titleColor.value"
+                @change="onchange(data.id, 'config.titleColor.value', data.config.titleColor.value)"
             />
         </div>
+    </div>
+
+    <div class="flex justify-between my-4">
+        <div>
+            <label for="" class="mr-5">描述颜色</label>
+            <span class="text-gray-300">{{ data.config.descriptionColor.value }}</span>
+        </div>
+
+        <div class="flex">
+            <button
+                class="mr-5 text-[#155bd4]"
+                @click="onchange(data.id, 'config.descriptionColor.value', descriptionColor_default)"
+            >
+                重置
+            </button>
+            <input
+                type="color"
+                v-model="data.config.descriptionColor.value"
+                @change="onchange(data.id, 'config.descriptionColor.value', data.config.descriptionColor.value)"
+            />
+        </div>
+    </div>
+
+    <div class="flex justify-between my-4">
+        <div>
+            <label for="" class="mr-5">背景颜色</label>
+            <span class="text-gray-300">{{ data.config.backgroundColor.value }}</span>
+        </div>
+
+        <div class="flex">
+            <button
+                class="mr-5 text-[#155bd4]"
+                @click="onchange(data.id, 'config.backgroundColor.value', backgroundColor_default)"
+            >
+                重置
+            </button>
+            <input
+                type="color"
+                v-model="data.config.backgroundColor.value"
+                @change="onchange(data.id, 'config.backgroundColor.value', data.config.backgroundColor.value)"
+            />
+        </div>
+    </div>
+
+    <div class="flex justify-between my-4">
+        <div>
+            <label for="" class="mr-5">跳转链接</label>
+            <span class="text-gray-300">{{ data.config.link.value.show ? '显示' : '不显示' }}</span>
+        </div>
+
+        <input
+            type="checkbox"
+            v-model="data.config.link.value.show"
+            @change="onchange(data.id, 'config.link.value.show', data.config.link.value.show)"
+        />
+
+
+    </div>
+
+    <div v-if="data.config.link.value.show" class="p-4 my-4">
+        <custom-radio v-model="data.config.link.value.styleTyle" :options="linkStyleOptions" :radioButton="false"></custom-radio>
+
+        <input
+          class="w-20 border my-4 outline-offset-2"
+          type="text"
+          :spellcheck="false"
+          v-model="data.config.link.value.text"
+          :title="data.config.link.value.text"
+          @input="
+              onchange(
+                  data.id,
+                  'config.link.value.text',
+                  data.config.link.value.text
+              )
+          "
+        />
     </div>
 </template>
 
 <script setup>
 import CustomRadio from "@/ui/CustomRadio/index.vue";
-import { defineProps, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 const props = defineProps(["data", "onchange"]);
 const alignOptions = reactive([
     {
@@ -232,5 +308,13 @@ const fontWeightMap = reactive(
     }, {})
 );
 
-const titleColor_default = ref(props.data.styles.color);
+const titleColor_default = ref(props.data.config.titleColor.value);
+const descriptionColor_default = ref(props.data.config.descriptionColor.value)
+const backgroundColor_default = ref(props.data.config.backgroundColor.value)
+
+const linkStyleOptions = reactive([
+  { title: '样式一', value: '1' },
+  { title: '样式二', value: '2' },
+  { title: '样式三', value: '3' }
+])
 </script>
