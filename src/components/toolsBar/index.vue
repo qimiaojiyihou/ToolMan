@@ -46,63 +46,45 @@ const toolsList = reactive([
             // config: 'TitleTextConfig',
             // value: '标题文本',
             config: {
-                titleContent: {
+                title: {
                     required: false,
-                    type: String,
-                    value: "",
+                    type: Object,
+                    value: {
+                        text: '',
+                        fontSize: '14',
+                        fontWeight: 'bold',
+                        color: '#323233'
+                    }
                 },
-                titleFontSize: {
+                description: {
                     required: false,
-                    type: String,
-                    value: "14",
+                    type: Object,
+                    value: {
+                        text: '',
+                        fontSize: '12',
+                        fontWeight: 'normal',
+                        color: '#969799'
+                    }
                 },
-                titleFontWeight: {
-                    required: false,
-                    type: String,
-                    value: "bold",
-                },
-                titleColor: {
-                    required: false,
-                    type: String,
-                    value: "#323233",
-                },
-                descriptionContent: {
-                    required: false,
-                    type: String,
-                    value: "",
-                },
-                descriptionFontSize: {
-                    required: false,
-                    type: String,
-                    value: "12",
-                },
-                descriptionFontWeight: {
-                    required: false,
-                    type: String,
-                    value: "normal",
-                },
-                descriptionColor: {
-                    required: false,
-                    type: String,
-                    value: "#969799",
-                },
-                align: {
+                general: {
                     required: true,
-                    type: String,
-                    value: "left",
-                },
-                backgroundColor: {
-                    required: false,
-                    type: String,
-                    value: "#ffffff",
+                    type: Object,
+                    value: {
+                        align: 'left',
+                        backgroundColor: "#ffffff",
+                    }
                 },
                 link: {
                     required: false,
                     type: Object,
                     value: {
                       show: true,
-                      styleTyle: '',
-                      text: '查看更多'
+                      styleTyle: '1',
+                      text: '查看更多',
+                      url: '',
+                      fontSize: '12',
+                      fontWeight: 'normal',
+                      color: '#3388ff'
                     },
                 }
             },

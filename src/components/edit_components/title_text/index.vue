@@ -1,6 +1,6 @@
 <template>
     <div class="titleText" :style="data?.styles">
-        <div class="titleContent">
+        <!-- <div class="titleContent">
             {{ data.config.titleContent.value || "" }}
         </div>
         <div class="descriptionContent" style="white-space: pre-wrap">
@@ -9,7 +9,7 @@
 
         <div>
             {{ data.styles.color }}
-        </div>
+        </div> -->
     </div>
 </template>
 

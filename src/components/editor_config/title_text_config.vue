@@ -1,23 +1,17 @@
 <template>
     <div class="font-black text-lg">{{ data.name }}</div>
-    <!-- <div>
-    <input
-      v-model="data.value"
-      type="text"
-      @input="onchange(data.id, 'value', data.value)"
-    />
-  </div> -->
+
     <div>标题内容</div>
     <input
         class="w-full border outline-offset-2"
         type="text"
         :spellcheck="false"
-        v-model="data.config.titleContent.value"
+        v-model="data.config.title.value.text"
         @input="
             onchange(
                 data.id,
-                'config.titleContent.value',
-                data.config.titleContent.value
+                'config.title.value.text',
+                data.config.title.value.text
             )
         "
     />
@@ -28,12 +22,12 @@
         type="text"
         :spellcheck="false"
         :rows="3"
-        v-model="data.config.descriptionContent.value"
+        v-model="data.config.description.value.text"
         @input="
             onchange(
                 data.id,
-                'config.descriptionContent.value',
-                data.config.descriptionContent.value
+                'config.description.value.text',
+                data.config.description.value.text
             )
         "
     />
@@ -42,15 +36,15 @@
         <div>
             <label for="" class="mr-5">对齐方式</label>
             <span class="text-gray-300">{{
-                alignMap[data.config.align.value]
+                alignMap[data.config.general.value.align]
             }}</span>
         </div>
         <custom-radio
-            v-model="data.config.align.value"
+            v-model="data.config.general.value.align"
             :options="alignOptions"
             class="float-right"
             @change="
-                onchange(data.id, 'config.align.value', data.config.align.value)
+                onchange(data.id, 'config.general.value.align', data.config.general.value.align)
             "
         ></custom-radio>
     </div>
@@ -59,18 +53,18 @@
         <div>
             <label for="" class="mr-5">标题大小</label>
             <span class="text-gray-300">{{
-                fontSizeMap[data.config.titleFontSize.value]
+                fontSizeMap[data.config.title.value.fontSize]
             }}</span>
         </div>
         <custom-radio
-            v-model="data.config.titleFontSize.value"
+            v-model="data.config.title.value.fontSize"
             :options="fontSizeOptions"
             class="float-right"
             @change="
                 onchange(
                     data.id,
-                    'config.titleFontSize.value',
-                    data.config.titleFontSize.value
+                    'config.title.value.fontSize',
+                    data.config.title.value.fontSize
                 )
             "
         ></custom-radio>
@@ -80,18 +74,18 @@
         <div>
             <label for="" class="mr-5">描述大小</label>
             <span class="text-gray-300">{{
-                fontSizeMap[data.config.descriptionFontSize.value]
+                fontSizeMap[data.config.description.value.fontSize]
             }}</span>
         </div>
         <custom-radio
-            v-model="data.config.descriptionFontSize.value"
+            v-model="data.config.description.value.fontSize"
             :options="fontSizeOptions"
             class="float-right"
             @change="
                 onchange(
                     data.id,
-                    'config.descriptionFontSize.value',
-                    data.config.descriptionFontSize.value
+                    'config.description.value.fontSize',
+                    data.config.description.value.fontSize
                 )
             "
         ></custom-radio>
@@ -101,18 +95,18 @@
         <div>
             <label for="" class="mr-5">标题粗细</label>
             <span class="text-gray-300">{{
-                fontWeightMap[data.config.titleFontWeight.value]
+                fontWeightMap[data.config.title.value.fontWeight]
             }}</span>
         </div>
         <custom-radio
-            v-model="data.config.titleFontWeight.value"
+            v-model="data.config.title.value.fontWeight"
             :options="fontWeightOptions"
             class="float-right"
             @change="
                 onchange(
                     data.id,
-                    'config.titleFontWeight.value',
-                    data.config.titleFontWeight.value
+                    'config.title.value.fontWeight',
+                    data.config.title.value.fontWeight
                 )
             "
         ></custom-radio>
@@ -122,18 +116,18 @@
         <div>
             <label for="" class="mr-5">描述粗细</label>
             <span class="text-gray-300">{{
-                fontWeightMap[data.config.descriptionFontWeight.value]
+                fontWeightMap[data.config.description.value.fontWeight]
             }}</span>
         </div>
         <custom-radio
-            v-model="data.config.descriptionFontWeight.value"
+            v-model="data.config.description.value.fontWeight"
             :options="fontWeightOptions"
             class="float-right"
             @change="
                 onchange(
                     data.id,
-                    'config.descriptionFontWeight.value',
-                    data.config.descriptionFontWeight.value
+                    'config.description.value.fontWeight',
+                    data.config.description.value.fontWeight
                 )
             "
         ></custom-radio>
@@ -142,20 +136,20 @@
     <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">标题颜色</label>
-            <span class="text-gray-300">{{ data.config.titleColor.value }}</span>
+            <span class="text-gray-300">{{ data.config.title.value.color }}</span>
         </div>
 
         <div class="flex">
             <button
                 class="mr-5 text-[#155bd4]"
-                @click="onchange(data.id, 'config.titleColor.value', titleColor_default)"
+                @click="onchange(data.id, 'config.title.value.color', titleColor_default)"
             >
                 重置
             </button>
             <input
                 type="color"
-                v-model="data.config.titleColor.value"
-                @change="onchange(data.id, 'config.titleColor.value', data.config.titleColor.value)"
+                v-model="data.config.title.value.color"
+                @change="onchange(data.id, 'config.title.value.color', data.config.title.value.color)"
             />
         </div>
     </div>
@@ -163,20 +157,20 @@
     <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">描述颜色</label>
-            <span class="text-gray-300">{{ data.config.descriptionColor.value }}</span>
+            <span class="text-gray-300">{{ data.config.description.value.color }}</span>
         </div>
 
         <div class="flex">
             <button
                 class="mr-5 text-[#155bd4]"
-                @click="onchange(data.id, 'config.descriptionColor.value', descriptionColor_default)"
+                @click="onchange(data.id, 'config.description.value.color', descriptionColor_default)"
             >
                 重置
             </button>
             <input
                 type="color"
-                v-model="data.config.descriptionColor.value"
-                @change="onchange(data.id, 'config.descriptionColor.value', data.config.descriptionColor.value)"
+                v-model="data.config.description.value.color"
+                @change="onchange(data.id, 'config.description.value.color', data.config.description.value.color)"
             />
         </div>
     </div>
@@ -184,20 +178,20 @@
     <div class="flex justify-between my-4">
         <div>
             <label for="" class="mr-5">背景颜色</label>
-            <span class="text-gray-300">{{ data.config.backgroundColor.value }}</span>
+            <span class="text-gray-300">{{ data.config.general.value.backgroundColor }}</span>
         </div>
 
         <div class="flex">
             <button
                 class="mr-5 text-[#155bd4]"
-                @click="onchange(data.id, 'config.backgroundColor.value', backgroundColor_default)"
+                @click="onchange(data.id, 'config.general.value.backgroundColor', backgroundColor_default)"
             >
                 重置
             </button>
             <input
                 type="color"
-                v-model="data.config.backgroundColor.value"
-                @change="onchange(data.id, 'config.backgroundColor.value', data.config.backgroundColor.value)"
+                v-model="data.config.general.value.backgroundColor"
+                @change="onchange(data.id, 'config.general.value.backgroundColor', data.config.general.value.backgroundColor)"
             />
         </div>
     </div>
@@ -213,27 +207,109 @@
             v-model="data.config.link.value.show"
             @change="onchange(data.id, 'config.link.value.show', data.config.link.value.show)"
         />
-
-
     </div>
 
-    <div v-if="data.config.link.value.show" class="p-4 my-4">
+    <div v-if="data.config.link.value.show" class="p-4 my-4 bg-neutral-100">
         <custom-radio v-model="data.config.link.value.styleTyle" :options="linkStyleOptions" :radioButton="false"></custom-radio>
 
-        <input
-          class="w-20 border my-4 outline-offset-2"
-          type="text"
-          :spellcheck="false"
-          v-model="data.config.link.value.text"
-          :title="data.config.link.value.text"
-          @input="
-              onchange(
-                  data.id,
-                  'config.link.value.text',
-                  data.config.link.value.text
-              )
-          "
-        />
+        <div class="flex my-4">
+            <label class="mr-5">跳转文本</label>
+            <input
+                class="flex-1 border outline-offset-2"
+                type="text"
+                :spellcheck="false"
+                v-model="data.config.link.value.text"
+                :title="data.config.link.value.text"
+                @input="
+                    onchange(
+                        data.id,
+                        'config.link.value.text',
+                        data.config.link.value.text
+                    )
+                "
+            />
+        </div>
+
+        <div class="flex my-4">
+            <label class="mr-5">跳转地址</label>
+            <input
+                class="flex-1 border outline-offset-2"
+                type="text"
+                :spellcheck="false"
+                v-model="data.config.link.value.url"
+                :title="data.config.link.value.url"
+                @input="
+                    onchange(
+                        data.id,
+                        'config.link.value.url',
+                        data.config.link.value.url
+                    )
+                "
+                />
+        </div>
+
+        <div class="flex justify-between my-4">
+            <div>
+                <label for="" class="mr-5">文本大小</label>
+                <span class="text-gray-300">{{
+                    fontSizeMap[data.config.link.value.fontSize]
+                }}</span>
+            </div>
+            <custom-radio
+                v-model="data.config.link.value.fontSize"
+                :options="fontSizeOptions"
+                class="float-right"
+                @change="
+                    onchange(
+                        data.id,
+                        'config.link.value.fontSize',
+                        data.config.link.value.fontSize
+                    )
+                "
+            ></custom-radio>
+        </div>
+
+        <div class="flex justify-between my-4">
+            <div>
+                <label for="" class="mr-5">文本粗细</label>
+                <span class="text-gray-300">{{
+                    fontWeightMap[data.config.link.value.fontWeight]
+                }}</span>
+            </div>
+            <custom-radio
+                v-model="data.config.link.value.fontWeight"
+                :options="fontWeightOptions"
+                class="float-right"
+                @change="
+                    onchange(
+                        data.id,
+                        'config.link.value.fontWeight',
+                        data.config.link.value.fontWeight
+                    )
+                "
+            ></custom-radio>
+        </div>
+
+        <div class="flex justify-between my-4">
+            <div>
+                <label for="" class="mr-5">文本颜色</label>
+                <span class="text-gray-300">{{ data.config.link.value.color }}</span>
+            </div>
+
+            <div class="flex">
+                <button
+                    class="mr-5 text-[#155bd4]"
+                    @click="onchange(data.id, 'config.link.value.color', linkColor_default)"
+                >
+                    重置
+                </button>
+                <input
+                    type="color"
+                    v-model="data.config.link.value.color"
+                    @change="onchange(data.id, 'config.link.value.color', data.config.link.value.color)"
+                />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -308,9 +384,10 @@ const fontWeightMap = reactive(
     }, {})
 );
 
-const titleColor_default = ref(props.data.config.titleColor.value);
-const descriptionColor_default = ref(props.data.config.descriptionColor.value)
-const backgroundColor_default = ref(props.data.config.backgroundColor.value)
+const titleColor_default = ref(props.data.config.title.value.color);
+const descriptionColor_default = ref(props.data.config.description.value.color)
+const backgroundColor_default = ref(props.data.config.general.value.backgroundColor)
+const linkColor_default = ref(props.data.config.link.value.color)
 
 const linkStyleOptions = reactive([
   { title: '样式一', value: '1' },
