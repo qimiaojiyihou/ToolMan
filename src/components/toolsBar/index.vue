@@ -78,7 +78,7 @@ const toolsList = reactive([
                     required: false,
                     type: Object,
                     value: {
-                      show: true,
+                      show: false,
                       styleTyle: '1',
                       text: '查看更多',
                       url: '',

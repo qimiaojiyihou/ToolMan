@@ -210,7 +210,12 @@
     </div>
 
     <div v-if="data.config.link.value.show" class="p-4 my-4 bg-neutral-100">
-        <custom-radio v-model="data.config.link.value.styleTyle" :options="linkStyleOptions" :radioButton="false"></custom-radio>
+        <custom-radio
+            v-model="data.config.link.value.styleTyle"
+            :options="linkStyleOptions"
+            :radioButton="false"
+            @change="onchange(data.id, 'config.link.value.styleTyle', data.config.link.value.styleTyle)"
+        ></custom-radio>
 
         <div class="flex my-4">
             <label class="mr-5">跳转文本</label>
